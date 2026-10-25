@@ -1,4 +1,4 @@
-import { Component, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { Component, CalendarDays, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 import type { Accent } from './accents';
 
@@ -127,6 +127,16 @@ export const routes: AppRoute[] = [
     accent: 'indigo',
     breadcrumbs: ['App', 'Dominant Courses'],
     component: lazy(() => import('@/pages/DominantCoursePage')),
+  },
+  {
+    path: '/sessions',
+    label: 'Sessions',
+    title: 'Sessions',
+    description: 'Browse academic sessions by program and status',
+    icon: CalendarDays,
+    accent: 'sky',
+    breadcrumbs: ['App', 'Sessions'],
+    component: lazy(() => import('@/pages/SessionPage')),
   },
   {
     path: '/md-rules',
