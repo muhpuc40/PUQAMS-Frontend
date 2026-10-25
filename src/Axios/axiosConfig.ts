@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { clearTokens, getTokens, saveTokens } from '@/Utils/tokenStorage';
 
-const apiUrl = import.meta.env.VITE_API_URL || '/api/v1';
+const apiUrl = import.meta.env.VITE_API_URL || '/api';
 
 const apiClient = axios.create({
   baseURL: apiUrl,
