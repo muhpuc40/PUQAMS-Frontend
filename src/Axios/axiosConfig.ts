@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { clearTokens, getTokens, saveTokens } from '@/Utils/tokenStorage';
 
-const apiUrl = import.meta.env.VITE_BASE_URL;
+const apiUrl = import.meta.env.VITE_API_URL || '/api/v1';
 
 const apiClient = axios.create({
   baseURL: apiUrl,
@@ -68,7 +68,7 @@ apiClient.interceptors.response.use(
         })
           .then((token) => {
             originalRequest.headers.Authorization = `Bearer ${token}`;
-            return axios(originalRequest);
+            return apiClient(originalRequest);
           })
           .catch((err) => Promise.reject(err));
       }
@@ -78,7 +78,7 @@ apiClient.interceptors.response.use(
 
       try {
         // Call your refresh token endpoint
-        const response = await axios.post(`${apiUrl}Auth/refresh`, {
+        const response = await axios.post(`${apiUrl}/Auth/refresh`, {
           refresh_token: refreshToken,
           device: 'Application',
         });
