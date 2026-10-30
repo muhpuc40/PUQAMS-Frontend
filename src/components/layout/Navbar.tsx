@@ -99,11 +99,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Profile Photo on Left */}
             <img
               src={avatar}
-              alt="Kingshuk"
+              alt="Rezaur"
               className="w-7 h-7 rounded-full object-cover shrink-0 ring-1 ring-slate-200 dark:ring-slate-700 shadow-2xs"
             />
             <span className="hidden sm:inline text-xs font-semibold text-slate-700 dark:text-slate-200">
-              Kingshuk Dhar
+              Rezaur Rahman
             </span>
           </button>
 
@@ -113,15 +113,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="flex items-center gap-3 px-3.5 py-3 border-b border-slate-100 dark:border-slate-800">
                 <img
                   src={avatar}
-                  alt="Kingshuk Dhar"
+                  alt="Rezaur Rahman"
                   className="w-10 h-10 rounded-full object-cover shrink-0 ring-2 ring-indigo-500/20 shadow-xs"
                 />
                 <div className="min-w-0">
                   <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 truncate">
-                    Kingshuk Dhar
+                    Rezaur Rahman
                   </p>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                    kingshuk@puc.ac.bd
+                    rezaur@puc.ac.bd
                   </p>
                 </div>
               </div>
