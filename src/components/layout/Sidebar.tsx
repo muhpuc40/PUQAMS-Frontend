@@ -58,7 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {!isCollapsedDesktop && (
               <div className="flex flex-col min-w-0">
                 <span className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-tight truncate">
-                  Premier University
+                  QAMS
                 </span>
               </div>
             )}

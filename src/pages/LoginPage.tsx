@@ -129,9 +129,7 @@ export const LoginPage: React.FC = () => {
                 alt="Premier University"
                 className="w-20 h-20 object-contain"
               />
-              <h1 className="text-lg font-bold text-white mt-3">
-                Premier University
-              </h1>
+              <h1 className="text-lg font-bold text-white mt-3">QAMS</h1>
               <p className="text-xs text-indigo-100/90 mt-0.5">
                 Question Authoring Management System
               </p>

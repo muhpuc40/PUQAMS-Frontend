@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
         <div className="flex items-center gap-2">
           <span className="font-medium text-slate-700 dark:text-slate-300">
-            Premier University Question Authoring Management System
+            Question Authoring Management System
           </span>
         </div>
 
