@@ -1,4 +1,4 @@
-import { Component, CalendarDays, Layers, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { Component, CalendarDays, Layers, NotebookPen, ClipboardList, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 import type { Accent } from './accents';
 
@@ -57,6 +57,26 @@ export const routes: AppRoute[] = [
     accent: 'indigo',
     breadcrumbs: ['App', 'Dashboard'],
     component: lazy(() => import('@/pages/DashboardPage')),
+  },
+  {
+    path: '/my-courses',
+    label: 'My Running Courses',
+    title: 'My Running Courses',
+    description: 'Your assigned sections — enter CLOs, exams and questions',
+    icon: NotebookPen,
+    accent: 'emerald',
+    breadcrumbs: ['App', 'My Running Courses'],
+    component: lazy(() => import('@/pages/MyRunningCoursesPage')),
+  },
+  {
+    path: '/clo-enter',
+    label: 'CLO Entry',
+    title: 'CLO Entry',
+    description: 'Declare exams and question CLO marks for a section',
+    icon: ClipboardList,
+    hidden: true,
+    breadcrumbs: ['App', 'My Running Courses', 'CLO Entry'],
+    component: lazy(() => import('@/pages/CloEnterPage')),
   },
   {
     path: '/plos',
