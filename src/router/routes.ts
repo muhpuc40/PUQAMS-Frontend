@@ -1,4 +1,4 @@
-import { Component, CalendarDays, UserCircle, Layers, NotebookPen, ClipboardList, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { Component, CalendarDays, CalendarClock, UsersRound, UserCircle, Layers, NotebookPen, ClipboardList, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 import type { Accent } from './accents';
 
@@ -87,6 +87,26 @@ export const routes: AppRoute[] = [
     hidden: true,
     breadcrumbs: ['App', 'My Running Courses', 'CLO Entry'],
     component: lazy(() => import('@/pages/CloEnterPage')),
+  },
+  {
+    path: '/exam-setup',
+    label: 'Exam Setup',
+    title: 'Exam Setup',
+    description: 'Exam name, Mid Term / Final schedule and exam committees (Administrator)',
+    icon: CalendarClock,
+    accent: 'indigo',
+    breadcrumbs: ['App', 'Exam Setup'],
+    component: lazy(() => import('@/pages/ExamSetupPage')),
+  },
+  {
+    path: '/my-committees',
+    label: 'My Committees',
+    title: 'My Committees',
+    description: 'Exam committees you sit on',
+    icon: UsersRound,
+    accent: 'amber',
+    breadcrumbs: ['App', 'My Committees'],
+    component: lazy(() => import('@/pages/MyCommitteesPage')),
   },
   {
     path: '/plos',
