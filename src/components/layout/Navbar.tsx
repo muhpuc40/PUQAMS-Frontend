@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, Search, User, Settings, LogOut, HelpCircle } from "lucide-react";
 import { ToggleTheme } from "@/components/ui";
-import avatar from "@/assets/images/avatar.jpg";
+import { useAuth } from "@/contexts/AuthContext";
+import defaultAvatar from "@/assets/images/default-avatar.svg";
 
 export interface NavbarProps {
   onToggleSidebar: () => void;
@@ -18,6 +20,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const displayName = user?.fullname || user?.username || "User";
+  const subtitle = user?.email || user?.username || "";
+
+  const handleProfile = () => {
+    setShowProfileMenu(false);
+    navigate("/profile");
+  };
+
+  const handleSignOut = () => {
+    setShowProfileMenu(false);
+    logout();
+    navigate("/login", { replace: true });
+  };
 
   // Close profile dropdown on outside click
   useEffect(() => {
@@ -98,12 +116,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer select-none">
             {/* Profile Photo on Left */}
             <img
-              src={avatar}
-              alt="Rezaur"
+              src={defaultAvatar}
+              alt={displayName}
               className="w-7 h-7 rounded-full object-cover shrink-0 ring-1 ring-slate-200 dark:ring-slate-700 shadow-2xs"
             />
             <span className="hidden sm:inline text-xs font-semibold text-slate-700 dark:text-slate-200">
-              Rezaur Rahman
+              {displayName}
             </span>
           </button>
 
@@ -112,23 +130,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Profile Photo beside Name and Email */}
               <div className="flex items-center gap-3 px-3.5 py-3 border-b border-slate-100 dark:border-slate-800">
                 <img
-                  src={avatar}
-                  alt="Rezaur Rahman"
+                  src={defaultAvatar}
+                  alt={displayName}
                   className="w-10 h-10 rounded-full object-cover shrink-0 ring-2 ring-indigo-500/20 shadow-xs"
                 />
                 <div className="min-w-0">
                   <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 truncate">
-                    Rezaur Rahman
+                    {displayName}
                   </p>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                    rezaur@puc.ac.bd
+                    {subtitle}
                   </p>
+                  {user?.designation && (
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 truncate">
+                      {user.designation}
+                      {user.department ? ` · ${user.department}` : ""}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div className="py-1 text-xs text-slate-700 dark:text-slate-300">
                 <button
-                  onClick={() => setShowProfileMenu(false)}
+                  onClick={handleProfile}
                   className="w-full flex items-center gap-2 px-3.5 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left cursor-pointer">
                   <User className="w-3.5 h-3.5 text-slate-400" />
                   <span>Profile Overview</span>
@@ -149,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-1">
                 <button
-                  onClick={() => setShowProfileMenu(false)}
+                  onClick={handleSignOut}
                   className="w-full flex items-center gap-2 px-3.5 py-2 text-xs text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors text-left cursor-pointer">
                   <LogOut className="w-3.5 h-3.5" />
                   <span>Sign Out</span>

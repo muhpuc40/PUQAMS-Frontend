@@ -120,6 +120,11 @@ const toInput = (q: DraftQuestion): QuestionInput => ({
   })),
 });
 
+// One exam per session for these categories: a section declares it once.
+const SINGLE_EXAM_COLUMNS = ["Mid_Term", "Final"];
+const isCategoryFull = (c: AssessmentCategory) =>
+  SINGLE_EXAM_COLUMNS.includes(c.tbl_sessioncourse_column) && c.exams.length > 0;
+
 const cloLabel = (c: SectionClo) =>
   c.plosname ? `${c.course_outcome} (${c.plosname})` : c.course_outcome;
 
@@ -383,7 +388,10 @@ export const CloEnterPage: React.FC = () => {
     () =>
       (tree?.categories ?? []).map((c) => ({
         value: String(c.id),
-        label: `${c.display_name} (Max: ${c.max_mark})`,
+        label: isCategoryFull(c)
+          ? `${c.display_name} (Max: ${c.max_mark}) — already declared`
+          : `${c.display_name} (Max: ${c.max_mark})`,
+        disabled: isCategoryFull(c),
       })),
     [tree],
   );
@@ -701,7 +709,10 @@ export const CloEnterPage: React.FC = () => {
           subtitle={`${category.tbl_sessioncourse_column} · MDR max ${category.max_mark} · ${category.exams.length} exam${category.exams.length === 1 ? "" : "s"}`}
           icon={<ClipboardList className="w-4 h-4 text-indigo-500" />}
           headerAction={
-            editable && (
+            editable &&
+            (isCategoryFull(category) ? (
+              <Chip tone="indigo">One exam per session</Chip>
+            ) : (
               <CustomButton
                 variant="outline"
                 size="xs"
@@ -709,7 +720,7 @@ export const CloEnterPage: React.FC = () => {
                 onClick={() => openCreate(category)}>
                 Add exam
               </CustomButton>
-            )
+            ))
           }>
           {category.exams.length === 0 ? (
             <p className="text-xs text-slate-400">No exams declared in this category yet.</p>

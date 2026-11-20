@@ -1,4 +1,4 @@
-import { Component, CalendarDays, Layers, NotebookPen, ClipboardList, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { Component, CalendarDays, UserCircle, Layers, NotebookPen, ClipboardList, ListChecks, ServerCog, ClipboardCheck, Target, Crown, Link2, GitCompare, ListOrdered, LogIn, BookOpen, LayoutDashboard, type LucideIcon } from 'lucide-react';
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 import type { Accent } from './accents';
 
@@ -57,6 +57,16 @@ export const routes: AppRoute[] = [
     accent: 'indigo',
     breadcrumbs: ['App', 'Dashboard'],
     component: lazy(() => import('@/pages/DashboardPage')),
+  },
+  {
+    path: '/profile',
+    label: 'Profile Overview',
+    title: 'Profile Overview',
+    description: 'Your account details',
+    icon: UserCircle,
+    hidden: true,
+    breadcrumbs: ['App', 'Profile Overview'],
+    component: lazy(() => import('@/pages/ProfilePage')),
   },
   {
     path: '/my-courses',
