@@ -108,15 +108,12 @@ export const LoginPage: React.FC = () => {
         <div className="hidden lg:flex flex-col items-center justify-center p-10 text-center">
           <img
             src={puLogo}
-            alt="Premier University"
+            alt="QAMS"
             className="w-32 h-32 object-contain"
           />
           <h1 className="text-3xl font-bold text-white tracking-tight mt-6">
-            Premier University
-          </h1>
-          <p className="text-sm text-indigo-100/90 mt-2">
             Question Authoring Management System
-          </p>
+          </h1>
         </div>
 
         {/* Right: login card */}
@@ -126,7 +123,7 @@ export const LoginPage: React.FC = () => {
             <div className="flex flex-col items-center mb-6 lg:hidden">
               <img
                 src={puLogo}
-                alt="Premier University"
+                alt="QAMS"
                 className="w-20 h-20 object-contain"
               />
               <h1 className="text-lg font-bold text-white mt-3">QAMS</h1>
